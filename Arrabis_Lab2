@@ -4,50 +4,30 @@ class Cylinder {
     protected double radius;
     protected double height;
 
-    // Constructor to set the radius and height
-    public Cylinder(double r, double h) {
-        radius = r;
-        height = h;
+    public void getInput() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the radius of the cylinder: ");
+        radius = scanner.nextDouble();
+        System.out.print("Enter the height of the cylinder: ");
+        height = scanner.nextDouble();
     }
-            
-    // Method to compute the surface area
+
     public double area() {
-        return 2 * Math.PI * radius * (radius + height);
+        return 2 * Math.PI * radius * radius + 2 * Math.PI * height;
     }
 }
 
 class CylinderVolume extends Cylinder {
-    // Constructor to initialize radius and height
-    public CylinderVolume(double r, double h) {
-        super(r, h);
-    }
-
-    // Method to compute the volume
     public double volume() {
-        return Math.PI * Math.pow(radius, 2) * height;
+        return Math.PI * radius * radius * height;
     }
 }
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        // Get user input for radius and height
-        System.out.print("Enter radius of the cylinder: ");
-        double radius = scanner.nextDouble();
-        System.out.print("Enter height of the cylinder: ");
-        double height = scanner.nextDouble();
-
-        // Create an instance of CylinderVolume
-        CylinderVolume cylinderVolume = new CylinderVolume(radius, height);
-
-        // Compute and display the area and volume
-        double area = cylinderVolume.area();
-        double volume = cylinderVolume.volume();
-
-        System.out.printf("Surface Area of the Cylinder: %.2f%n", area);
-        System.out.printf("Volume of the Cylinder: %.2f%n", volume);
-
-        scanner.close();
+        CylinderVolume cylinderVolume = new CylinderVolume();
+        cylinderVolume.getInput();
+        System.out.printf("Area of the cylinder: %.2f%n", cylinderVolume.area());
+        System.out.printf("Volume of the cylinder: %.2f%n", cylinderVolume.volume());
     }
 }
