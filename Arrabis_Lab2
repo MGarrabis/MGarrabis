@@ -1,53 +1,53 @@
-// Base class for Cylinder calculations
+import java.util.Scanner;
+
 class Cylinder {
     protected double radius;
     protected double height;
 
-    // Constructor to initialize the radius and height
-    public Cylinder(double radius, double height) {
-        this.radius = radius;
-        this.height = height;
+    // Constructor to set the radius and height
+    public Cylinder(double r, double h) {
+        radius = r;
+        height = h;
     }
-
-    // Method to compute the surface area of the cylinder
-    public double computeSurfaceArea() {
-        return 2 * Math.PI * radius * radius + 2 * Math.PI * radius * height;
-    }
-
-    // Method to compute the volume of the cylinder
-    public double computeVolume() {
-        return Math.PI * radius * radius * height;
+            
+    // Method to compute the surface area
+    public double area() {
+        return 2 * Math.PI * radius * (radius + height);
     }
 }
 
-// Derived class to display the results
-class CylinderDisplay extends Cylinder {
-
-    // Constructor to initialize the base class properties
-    public CylinderDisplay(double radius, double height) {
-        super(radius, height);
+class CylinderVolume extends Cylinder {
+    // Constructor to initialize radius and height
+    public CylinderVolume(double r, double h) {
+        super(r, h);
     }
 
-    // Method to display the area and volume of the cylinder
-    public void displayResults() {
-        double area = computeSurfaceArea();
-        double volume = computeVolume();
-        System.out.printf("Surface Area: %.2f\n", area);
-        System.out.printf("Volume: %.2f\n", volume);
+    // Method to compute the volume
+    public double volume() {
+        return Math.PI * Math.pow(radius, 2) * height;
     }
 }
 
-// Main class to run the program
 public class Main {
     public static void main(String[] args) {
-        // Example values for radius and height
-        double radius = 5.0;
-        double height = 10.0;
+        Scanner scanner = new Scanner(System.in);
 
-        // Create an instance of CylinderDisplay
-        CylinderDisplay cylinder = new CylinderDisplay(radius, height);
-        
-        // Display the results
-        cylinder.displayResults();
+        // Get user input for radius and height
+        System.out.print("Enter radius of the cylinder: ");
+        double radius = scanner.nextDouble();
+        System.out.print("Enter height of the cylinder: ");
+        double height = scanner.nextDouble();
+
+        // Create an instance of CylinderVolume
+        CylinderVolume cylinderVolume = new CylinderVolume(radius, height);
+
+        // Compute and display the area and volume
+        double area = cylinderVolume.area();
+        double volume = cylinderVolume.volume();
+
+        System.out.printf("Surface Area of the Cylinder: %.2f%n", area);
+        System.out.printf("Volume of the Cylinder: %.2f%n", volume);
+
+        scanner.close();
     }
 }
