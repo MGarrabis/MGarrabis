@@ -1,49 +1,51 @@
 import java.util.Scanner;
 
 public class StudentEnrollment {
+
     public static void main(String[] args) {
+        // Create a scanner object for user input
         Scanner scanner = new Scanner(System.in);
-
+        
         // Input student information
-        System.out.print("Enter Student Name: ");
+        System.out.print("Enter student name: ");
         String studentName = scanner.nextLine();
-
-        System.out.print("Enter Course: ");
+        
+        System.out.print("Enter course name: ");
         String course = scanner.nextLine();
-
-        System.out.print("Enter Course Code: ");
+        
+        System.out.print("Enter course code: ");
         String courseCode = scanner.nextLine();
-
-        System.out.print("Enter Number of Units : ");
+        
+        // Input number of units, maximum of 10
+        System.out.print("Enter number of units (max 10): ");
         int numberOfUnits = scanner.nextInt();
-
-        // Validate number of units
         if (numberOfUnits > 10) {
-            System.out.println("Maximum number of units is 10.");
+            System.out.println("Number of units exceeds the maximum allowed (10).");
             return;
         }
-
+        
         // Compute enrollment fee
         int feePerUnit = 1000;
         int totalFee = numberOfUnits * feePerUnit;
-
+        
         // Output student's name and total enrollment fee
         System.out.println("Student Name: " + studentName);
         System.out.println("Total Enrollment Fee: " + totalFee);
-
-        // Payment process
-        System.out.print("Enter Payment Amount: ");
+        
+        // Input payment amount
+        System.out.print("Enter payment amount: ");
         int paymentAmount = scanner.nextInt();
-
+        
         // Check payment status
         if (paymentAmount == totalFee) {
-            System.out.println("Fully Paid");
+            System.out.println("Payment Status: Fully Paid");
         } else if (paymentAmount < totalFee) {
-            System.out.println("Partial Payment: " + paymentAmount);
+            System.out.println("Payment Status: Partial Payment of " + paymentAmount);
         } else {
-            System.out.println("Overpayment: " + (paymentAmount - totalFee));
+            System.out.println("Payment Status: Overpayment of " + (paymentAmount - totalFee));
         }
-
+        
+        // Close the scanner
         scanner.close();
     }
 }
